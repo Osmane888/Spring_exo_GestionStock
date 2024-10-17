@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org/">
+    <title>Article List</title>
+</head>
+<body>
+
+<th:block th:insert="~{layout/header}"></th:block>
+<main>
+  <h2>Article List</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>Désignation</th>
+      <th>Price TTE</th>
+      <th>Price TTC</th>
+      <th>Category</th>
+      <th>Quantity</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="article: ${articles}" th:object="${article}">
+      <td th:text="*{designation()}"></td>
+      <td th:text="*{unitPriceExcludingTax()}"></td>
+      <td th:text="*{unitPriceIncludingTax()}"></td>
+      <td th:text="*{quantity()}"></td>
+      <td><button><a th:href="@{/article/{id} (id = *{id()})}">Détails</a></button></td>
+    </tr>
+    </tbody>
+  </table>
+</main>
+<th:block th:insert="~{layout/footer}"></th:block>
+
+</body>
+</html>
