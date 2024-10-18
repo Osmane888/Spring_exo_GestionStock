@@ -52,6 +52,12 @@ public class Article extends BaseEntity {
         this.category = category;
     }
 
+    public Article(String designation, long unitPriceExcludingTaxe, VAT vat) {
+        this.designation = designation;
+        this.unitPriceExcludingTaxe = unitPriceExcludingTaxe;
+        this.vat = vat;
+    }
+
     public long getUnitPriceIncludingTax(){
         return getUnitPriceExcludingTaxe() + getAddedValue();
     }
