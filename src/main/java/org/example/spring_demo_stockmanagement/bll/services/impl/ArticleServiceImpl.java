@@ -26,7 +26,7 @@ public class ArticleServiceImpl implements ArticleService {
 
         if(!image.isEmpty()){
             String imageName = UUID.randomUUID() + "_" + image.getOriginalFilename();
-            Path imagePath = Path.of(System.getProperty("user.dir"), "serc", "main", "static", imageName);
+            Path imagePath = Path.of(System.getProperty("user.dir"), "src", "main", "ressources", "static", imageName);
             try{
                 Files.write(imagePath, image.getBytes());
                 article.setPicture(imageName);
@@ -34,7 +34,6 @@ public class ArticleServiceImpl implements ArticleService {
                 throw new RuntimeException();
             }
         }
-
         return articleRepository.save(article);
     }
 }
