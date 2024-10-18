@@ -9,7 +9,7 @@
 <form method="post" th:action="@{/article/create}" th:object="${articleForm}" enctype="multipart/form-data">
     <div>
         <label for="designation"> DESIGNATION : </label>
-        <input id="designation" type="text" th:text="${designation}">
+        <input id="designation" type="text" th:field="*{designation}" required>
     </div>
     <div>
         <label for="price"> PRICE : </label>
