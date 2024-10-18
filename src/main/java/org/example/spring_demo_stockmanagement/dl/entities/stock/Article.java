@@ -40,6 +40,7 @@ public class Article extends BaseEntity {
     private String picture;
 
     @Getter
+    @Setter
     @ManyToOne(fetch = FetchType.EAGER)
     private Category category;
 
@@ -50,6 +51,12 @@ public class Article extends BaseEntity {
         this.vat = vat;
         this.picture = picture;
         this.category = category;
+    }
+
+    public Article(String designation, long unitPriceExcludingTaxe, VAT vat) {
+        this.designation = designation;
+        this.unitPriceExcludingTaxe = unitPriceExcludingTaxe;
+        this.vat = vat;
     }
 
     public long getUnitPriceIncludingTax(){
