@@ -3,6 +3,7 @@ package org.example.spring_demo_stockmanagement.pl.controllers;
 import lombok.RequiredArgsConstructor;
 import org.example.spring_demo_stockmanagement.bll.services.ArticleService;
 import org.example.spring_demo_stockmanagement.bll.services.StockService;
+import org.example.spring_demo_stockmanagement.dl.entities.enums.VAT;
 import org.example.spring_demo_stockmanagement.dl.entities.stock.Stock;
 import org.example.spring_demo_stockmanagement.pl.models.dto.ArticleDTO;
 import org.example.spring_demo_stockmanagement.pl.models.dto.ArticleDetailsDTO;
@@ -47,6 +48,7 @@ public class ArticleController {
 
     @GetMapping("/create")
     public String createArticle(Model model){
+        model.addAttribute("vatOptions", VAT.values());
         model.addAttribute("artcleForms", new ArticleForm());
         return "article/create";
     }

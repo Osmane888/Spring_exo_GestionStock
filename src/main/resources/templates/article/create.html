@@ -16,13 +16,14 @@
         <input id="price" type="text" th:field="*{unitPriceExcludingTax}">
     </div>
     <div>
-        <label for="vat"> VAT : </label>
-        <input id="vat" type="radio" th:field="*{vat}" th:value="*{vat.SIX.toString()}">
+        <label> VAT : </label>
+        <input th:each="vatOption : ${vatOptions}" type="radio" th:value="${vatOption}" th:text="${vatOption.value + '%'}">
     </div>
     <div>
         <label for="picture"> PICTURE : </label>
-        <input id="picture" type="text" th:field="*{image}">
+        <input id="picture" type="file" th:field="*{image}">
     </div>
+    <button type="submit">Add</button>
 </form>
 
 </body>
