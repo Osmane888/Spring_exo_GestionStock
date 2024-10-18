@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org/">
+    <title>ADD ARTICLE</title>
+</head>
+<body>
+
+<form method="post" th:action="@{/article/create}" th:object="${artcleForms}">
+    <div>
+        <label for="designation"> DESIGNATION : </label>
+        <input id="designation" type="text" th:text="*{designation}">
+    </div>
+    <div>
+        <label for="price"> PRICE : </label>
+        <input id="price" type="text" th:field="*{unitPriceExcludingTax}">
+    </div>
+    <div>
+        <label for="vat"> VAT : </label>
+        <input id="vat" type="radio" th:field="*{vat}" th:value="*{vat.SIX.toString()}">
+    </div>
+    <div>
+        <label for="picture"> PICTURE : </label>
+        <input id="picture" type="text" th:field="*{image}">
+    </div>
+</form>
+
+</body>
+</html>
