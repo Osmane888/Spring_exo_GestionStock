@@ -13,7 +13,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
 
-    private CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRepository;
 
     public List<Category> findAll(){
         return categoryRepository.findAll();

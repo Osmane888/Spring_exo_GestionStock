@@ -1,9 +1,12 @@
 package org.example.spring_demo_stockmanagement.pl.models.forms;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.spring_demo_stockmanagement.dl.entities.enums.VAT;
 import org.example.spring_demo_stockmanagement.dl.entities.stock.Article;
+import org.hibernate.validator.constraints.Range;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.UUID;
@@ -12,14 +15,15 @@ import java.util.UUID;
 @NoArgsConstructor
 public class ArticleForm {
 
+    @NotBlank
     private String designation;
+    @Min(0)
     private double unitPriceExcludingTax;
     private VAT vat;
     private MultipartFile image;
     private UUID categoryId;
 
     public Article toArticle(){
-        String price = String.valueOf(this.unitPriceExcludingTax);
         return new Article(
                 this.designation,
                 (long) unitPriceExcludingTax,

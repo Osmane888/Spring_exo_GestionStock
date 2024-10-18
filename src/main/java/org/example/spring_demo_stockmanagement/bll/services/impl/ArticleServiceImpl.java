@@ -29,12 +29,12 @@ public class ArticleServiceImpl implements ArticleService {
 
         if(!image.isEmpty()){
             String imageName = UUID.randomUUID() + "_" + image.getOriginalFilename();
-            Path imagePath = Path.of(System.getProperty("user.dir"), "src", "main", "ressources", "static", imageName);
+            Path imagePath = Path.of(System.getProperty("user.dir"), "src", "main", "resources", "static","images", imageName);
             try{
                 Files.write(imagePath, image.getBytes());
                 article.setPicture(imageName);
             } catch (IOException e){
-                throw new RuntimeException();
+                throw new RuntimeException(e.getMessage());
             }
         }
         Article newArticle = articleRepository.save(article);

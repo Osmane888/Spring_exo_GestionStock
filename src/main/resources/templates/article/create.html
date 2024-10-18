@@ -6,10 +6,10 @@
 </head>
 <body>
 
-<form method="post" th:action="@{/article/create}" th:object="${artcleForms}" enctype="multipart/form-data">
+<form method="post" th:action="@{/article/create}" th:object="${articleForm}" enctype="multipart/form-data">
     <div>
         <label for="designation"> DESIGNATION : </label>
-        <input id="designation" type="text" th:text="*{designation}">
+        <input id="designation" type="text" th:text="${designation}">
     </div>
     <div>
         <label for="price"> PRICE : </label>
@@ -26,7 +26,7 @@
     <div>
         <label for="category">Category : </label>
         <select th:field="*{categoryId}" id="category">
-            <option th:each="category : ${categories}" th:value="${category.id}" th:text="*{designation}"></option>
+            <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.designation}"></option>
         </select>
     </div>
     <button type="submit">Add</button>

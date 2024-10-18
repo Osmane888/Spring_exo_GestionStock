@@ -52,9 +52,9 @@ public class ArticleController {
 
     @GetMapping("/create")
     public String createArticle(Model model){
+        model.addAttribute("articleForm", new ArticleForm());
         model.addAttribute("vatOptions", VAT.values());
-        model.addAttribute("artcleForms", new ArticleForm());
-        model.addAttribute("categories", categoryService);
+        model.addAttribute("categories", categoryService.findAll());
         return "article/create";
     }
 
@@ -64,7 +64,7 @@ public class ArticleController {
         Category category = categoryService.findById(articleForm.getCategoryId());
         Article article = articleForm.toArticle();
         article.setCategory(category);
-        articleService.save(articleForm.toArticle(), articleForm.getImage());
+        articleService.save(article, articleForm.getImage());
         return "redirect:/article";
     }
 }
