@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<form method="post" th:action="@{/article/create}" th:object="${artcleForms}">
+<form method="post" th:action="@{/article/create}" th:object="${artcleForms}" enctype="multipart/form-data">
     <div>
         <label for="designation"> DESIGNATION : </label>
         <input id="designation" type="text" th:text="*{designation}">
@@ -17,11 +17,17 @@
     </div>
     <div>
         <label> VAT : </label>
-        <input th:each="vatOption : ${vatOptions}" type="radio" th:value="${vatOption}" th:text="${vatOption.value + '%'}">
+        <input th:each="vatOption : ${vatOptions}" type="radio" th:value="${vatOption}" th:text="${vatOption.value + '%'}" th:field="*{vat}">
     </div>
     <div>
         <label for="picture"> PICTURE : </label>
         <input id="picture" type="file" th:field="*{image}">
+    </div>
+    <div>
+        <label for="category">Category : </label>
+        <select th:field="*{categoryId}" id="category">
+            <option th:each="category : ${categories}" th:value="${category.id}" th:text="*{designation}"></option>
+        </select>
     </div>
     <button type="submit">Add</button>
 </form>

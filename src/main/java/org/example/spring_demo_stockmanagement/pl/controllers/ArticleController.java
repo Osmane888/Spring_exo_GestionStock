@@ -2,8 +2,11 @@ package org.example.spring_demo_stockmanagement.pl.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.example.spring_demo_stockmanagement.bll.services.ArticleService;
+import org.example.spring_demo_stockmanagement.bll.services.CategoryService;
 import org.example.spring_demo_stockmanagement.bll.services.StockService;
 import org.example.spring_demo_stockmanagement.dl.entities.enums.VAT;
+import org.example.spring_demo_stockmanagement.dl.entities.stock.Article;
+import org.example.spring_demo_stockmanagement.dl.entities.stock.Category;
 import org.example.spring_demo_stockmanagement.dl.entities.stock.Stock;
 import org.example.spring_demo_stockmanagement.pl.models.dto.ArticleDTO;
 import org.example.spring_demo_stockmanagement.pl.models.dto.ArticleDetailsDTO;
@@ -23,6 +26,7 @@ public class ArticleController {
 
     private final StockService stockService;
     private final ArticleService articleService;
+    private final CategoryService categoryService;
 
     @GetMapping
     public String getArticle(Model model){
@@ -50,11 +54,16 @@ public class ArticleController {
     public String createArticle(Model model){
         model.addAttribute("vatOptions", VAT.values());
         model.addAttribute("artcleForms", new ArticleForm());
+        model.addAttribute("categories", categoryService);
         return "article/create";
     }
 
     @PostMapping("/create")
     public String createArticle(@ModelAttribute ArticleForm articleForm, Model model){
+
+        Category category = categoryService.findById(articleForm.getCategoryId());
+        Article article = articleForm.toArticle();
+        article.setCategory(category);
         articleService.save(articleForm.toArticle(), articleForm.getImage());
         return "redirect:/article";
     }

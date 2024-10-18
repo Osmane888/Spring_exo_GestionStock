@@ -19,10 +19,10 @@ public class ArticleForm {
     private UUID categoryId;
 
     public Article toArticle(){
-        String price = String.valueOf(this.unitPriceExcludingTax * 100);
+        String price = String.valueOf(this.unitPriceExcludingTax);
         return new Article(
                 this.designation,
-                Long.parseLong(price),
+                (long) unitPriceExcludingTax,
                 vat
         );
     }

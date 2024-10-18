@@ -40,6 +40,7 @@ public class Article extends BaseEntity {
     private String picture;
 
     @Getter
+    @Setter
     @ManyToOne(fetch = FetchType.EAGER)
     private Category category;
 
