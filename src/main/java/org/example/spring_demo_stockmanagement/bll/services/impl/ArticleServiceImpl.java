@@ -7,6 +7,8 @@ import org.example.spring_demo_stockmanagement.dl.entities.stock.Article;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.UUID;
 
@@ -25,6 +27,12 @@ public class ArticleServiceImpl implements ArticleService {
         if(!image.isEmpty()){
             String imageName = UUID.randomUUID() + "_" + image.getOriginalFilename();
             Path imagePath = Path.of(System.getProperty("user.dir"), "serc", "main", "static", imageName);
+            try{
+                Files.write(imagePath, image.getBytes());
+                article.setPicture(imageName);
+            } catch (IOException e){
+                throw new RuntimeException();
+            }
         }
 
         return articleRepository.save(article);
