@@ -7,7 +7,7 @@ import org.example.spring_demo_stockmanagement.dl.entities.BaseEntity;
 import java.util.UUID;
 
 @Entity
-@Getter @Setter
+@Getter
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true) @ToString(callSuper = true)
 public class Stock extends BaseEntity {
@@ -21,6 +21,11 @@ public class Stock extends BaseEntity {
     public Stock(UUID id, int currentQuantity, Article article) {
         super(id);
         this.currentQuantity = currentQuantity;
+        this.setArticle(article);
+    }
+
+    public void setArticle(Article article) {
         this.article = article;
+        article.setStock(this);
     }
 }
