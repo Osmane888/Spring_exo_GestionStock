@@ -15,7 +15,8 @@ import java.util.UUID;
 
 @Entity
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = true) @ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true, of = {"designation", "unitPriceExcludingTax", "vat", "category"})
+@ToString(callSuper = true)
 public class Article extends BaseEntity {
 
     @Getter @Setter
@@ -44,6 +45,9 @@ public class Article extends BaseEntity {
     @ManyToOne(fetch = FetchType.EAGER)
     private Category category;
 
+    @OneToOne(mappedBy = "article", fetch = FetchType.EAGER)
+    private Stock stock;
+
     public Article(UUID id, String designation, long unitPriceExcludingTaxe, VAT vat, String picture, Category category) {
         super(id);
         this.designation = designation;
@@ -68,5 +72,9 @@ public class Article extends BaseEntity {
         BigDecimal priceTTE = BigDecimal.valueOf(this.unitPriceExcludingTaxe);
         BigDecimal addedValue = priceTTE.multiply(vat);
         return addedValue.setScale(2, RoundingMode.HALF_UP).longValue();
+    }
+
+    protected void setStock(Stock stock) {
+        this.stock = stock;
     }
 }
