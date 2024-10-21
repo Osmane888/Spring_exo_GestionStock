@@ -20,7 +20,7 @@ public record ArticleDTO(
                 article.getDesignation(),
                 article.getUnitPriceIncludingTax()/100D,
                 article.getUnitPriceIncludingTax()/100D,
-                article.getPicture(),
+                article.getCategory().getDesignation(),
                 stock.getCurrentQuantity()
         );
     }

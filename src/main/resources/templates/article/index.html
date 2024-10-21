@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org/">
+    <link rel="stylesheet" th:href="@{/style/style.css}">
     <title>Article List</title>
 </head>
 <body>
@@ -28,6 +29,7 @@
       <td th:text="*{designation()}"></td>
       <td th:text="*{unitPriceExcludingTax()}"></td>
       <td th:text="*{unitPriceIncludingTax()}"></td>
+      <td th:text="*{category()}"></td>
       <td th:text="*{quantity()}"></td>
       <td><button><a th:href="@{/article/{id} (id = *{id()})}">Détails</a></button></td>
     </tr>
