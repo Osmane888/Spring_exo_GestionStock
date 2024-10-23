@@ -25,6 +25,5 @@ public class StockServiceImpl implements StockService {
     public Stock getStockByArticleId(UUID articleId) {
         return stockRepository.findByArticleId(articleId).orElseThrow();
     }
-
-
+    
 }

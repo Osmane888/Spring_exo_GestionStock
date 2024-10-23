@@ -32,6 +32,7 @@
       <td th:text="*{category()}"></td>
       <td th:text="*{quantity()}"></td>
       <td><button><a th:href="@{/article/{id} (id = *{id()})}">Détails</a></button></td>
+      <td><button><a th:action="@{/article/delete/{id} (id = *{id()})}">Supprimer</a></button></td>
     </tr>
     </tbody>
   </table>

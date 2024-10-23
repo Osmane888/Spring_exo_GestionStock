@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.UUID;
 
 @Controller
@@ -76,5 +77,14 @@ public class ArticleController {
         article.setCategory(category);
         articleService.save(article, articleForm.getImage());
         return "redirect:/article";
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public String deleteArticle(@PathVariable UUID id){
+        Optional<Article> article = articleService.findById(id);
+        if(article.isPresent()){
+            articleService.delete(article.orElseThrow());
+        }
+        return "/index";
     }
 }

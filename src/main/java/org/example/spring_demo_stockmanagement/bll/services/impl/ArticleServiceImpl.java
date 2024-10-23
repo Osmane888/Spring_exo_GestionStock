@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -44,5 +45,16 @@ public class ArticleServiceImpl implements ArticleService {
                 newArticle
         ));
         return newArticle;
+    }
+
+    public void delete(Article article){
+        if(articleRepository.existsByDesignation(article.getDesignation())){
+            articleRepository.delete(article);
+        }
+        throw new IllegalArgumentException("Article does not exist");
+    }
+
+    public Optional<Article> findById(UUID id){
+        return articleRepository.findById(id);
     }
 }
