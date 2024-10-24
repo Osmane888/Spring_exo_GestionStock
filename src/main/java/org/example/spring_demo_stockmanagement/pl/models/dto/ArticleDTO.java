@@ -18,8 +18,8 @@ public record ArticleDTO(
         return new ArticleDTO(
                 article.getId(),
                 article.getDesignation(),
-                article.getUnitPriceIncludingTax()/100D,
-                article.getUnitPriceIncludingTax()/100D,
+                article.getUnitPriceIncludingTax()/10D,
+                article.getUnitPriceIncludingTax()/10D,
                 article.getCategory().getDesignation(),
                 stock.getCurrentQuantity()
         );

@@ -25,6 +25,14 @@ public class ArticleForm {
     private MultipartFile image;
     private UUID categoryId;
 
+
+    public ArticleForm(String designation, double unitPriceExcludingTax, VAT vat, UUID categoryId) {
+        this.designation = designation;
+        this.unitPriceExcludingTax = unitPriceExcludingTax;
+        this.vat = vat;
+        this.categoryId = categoryId;
+    }
+
     public Article toArticle(){
         return new Article(
                 this.designation,
@@ -32,4 +40,5 @@ public class ArticleForm {
                 vat
         );
     }
+
 }

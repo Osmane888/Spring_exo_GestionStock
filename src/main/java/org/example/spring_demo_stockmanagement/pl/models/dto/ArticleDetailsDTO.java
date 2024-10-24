@@ -22,8 +22,8 @@ public record ArticleDetailsDTO(
         return new ArticleDetailsDTO(
                 article.getId(),
                 article.getDesignation(),
-                article.getUnitPriceIncludingTax()/100D,
-                article.getUnitPriceIncludingTax()/100D,
+                article.getUnitPriceIncludingTax()/10D,
+                article.getUnitPriceIncludingTax()/10D,
                 article.getAddedValue(),
                 article.getVat(),
                 article.getPicture(),

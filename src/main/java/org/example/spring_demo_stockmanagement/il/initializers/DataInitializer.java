@@ -43,8 +43,8 @@ public class DataInitializer implements CommandLineRunner {
             List<Category> categories = categoryRepository.findAll();
             List<Article> articles = List.of(
                     new Article(UUID.randomUUID(), "Dragon Ball Sparking Zero",50L, VAT.TWENTY_ONE, null,categories.stream().filter(c -> c.getDesignation().equals("Jeux videos")).findFirst().orElseThrow()),
-                    new Article(UUID.randomUUID(), "Le Seigneur des Anneaux",50L, VAT.TWENTY_ONE, null,categories.stream().filter(c -> c.getDesignation().equals("Livres")).findFirst().orElseThrow()),
-                    new Article(UUID.randomUUID(), "Django",50L, VAT.TWENTY_ONE, null,categories.stream().filter(c -> c.getDesignation().equals("Films")).findFirst().orElseThrow())
+                    new Article(UUID.randomUUID(), "Le Seigneur des Anneaux",85L, VAT.TWENTY_ONE, null,categories.stream().filter(c -> c.getDesignation().equals("Livres")).findFirst().orElseThrow()),
+                    new Article(UUID.randomUUID(), "Django",40L, VAT.TWENTY_ONE, null,categories.stream().filter(c -> c.getDesignation().equals("Films")).findFirst().orElseThrow())
             );
             articleRepository.saveAll(articles);
         };

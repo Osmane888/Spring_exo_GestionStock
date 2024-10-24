@@ -11,7 +11,12 @@ public interface ArticleService {
 
     Article save(Article article, MultipartFile image);
 
-    void delete(Article article);
+    void delete(UUID uuid);
 
-    Optional<Article> findById(UUID uuid);
+    //A changer en retour Article
+    Article findById(UUID uuid);
+
+    void update(Article article, MultipartFile image);
+
+
 }

@@ -26,7 +26,7 @@ public class Article extends BaseEntity {
     @Getter @Setter
     @Column(nullable = false)
     @Min(0L)
-    private long unitPriceExcludingTaxe;
+    private long unitPriceExcludingTax;
 
     @Getter @Setter
     @Column(nullable = false)
@@ -48,10 +48,15 @@ public class Article extends BaseEntity {
     @OneToOne(mappedBy = "article", fetch = FetchType.EAGER)
     private Stock stock;
 
+    @Column(nullable = false)
+    private final boolean isDeleted = false;
+
+
+
     public Article(UUID id, String designation, long unitPriceExcludingTaxe, VAT vat, String picture, Category category) {
         super(id);
         this.designation = designation;
-        this.unitPriceExcludingTaxe = unitPriceExcludingTaxe;
+        this.unitPriceExcludingTax = unitPriceExcludingTaxe;
         this.vat = vat;
         this.picture = picture;
         this.category = category;
@@ -59,17 +64,24 @@ public class Article extends BaseEntity {
 
     public Article(String designation, long unitPriceExcludingTaxe, VAT vat) {
         this.designation = designation;
-        this.unitPriceExcludingTaxe = unitPriceExcludingTaxe;
+        this.unitPriceExcludingTax = unitPriceExcludingTaxe;
+        this.vat = vat;
+    }
+
+    public Article(UUID id, String designation, long unitPriceExcludingTax, VAT vat) {
+        super(id);
+        this.designation = designation;
+        this.unitPriceExcludingTax = unitPriceExcludingTax;
         this.vat = vat;
     }
 
     public long getUnitPriceIncludingTax(){
-        return getUnitPriceExcludingTaxe() + getAddedValue();
+        return getUnitPriceExcludingTax() + getAddedValue();
     }
 
     public long getAddedValue(){
         BigDecimal vat = BigDecimal.valueOf(this.vat.value,2);
-        BigDecimal priceTTE = BigDecimal.valueOf(this.unitPriceExcludingTaxe);
+        BigDecimal priceTTE = BigDecimal.valueOf(this.unitPriceExcludingTax);
         BigDecimal addedValue = priceTTE.multiply(vat);
         return addedValue.setScale(2, RoundingMode.HALF_UP).longValue();
     }
