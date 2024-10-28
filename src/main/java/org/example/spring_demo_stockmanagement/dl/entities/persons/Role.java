@@ -10,12 +10,12 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Getter
+@Getter @Setter
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true) @ToString(callSuper = true)
 public class Role extends BaseEntity {
 
-    @Setter
+
     @Column(nullable = false, unique = true, length = 20)
     private String name;
 

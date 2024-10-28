@@ -114,7 +114,6 @@ public class ArticleController {
     }
 
 
-
     @PostMapping("/delete/{id}")
     public String deleteArticle(@ModelAttribute UUID id) {
         articleService.delete(id);
