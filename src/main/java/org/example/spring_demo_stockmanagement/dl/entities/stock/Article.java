@@ -33,9 +33,6 @@ public class Article extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private VAT vat;
 
-    @Getter
-    private long addedValue;
-
     @Getter @Setter
     @Column(unique = true)
     private String picture;

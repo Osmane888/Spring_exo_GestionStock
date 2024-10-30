@@ -1,4 +1,4 @@
-package org.example.spring_demo_stockmanagement.pl.models.dto;
+package org.example.spring_demo_stockmanagement.api.controllers.models.dto;
 
 import org.example.spring_demo_stockmanagement.dl.entities.enums.VAT;
 import org.example.spring_demo_stockmanagement.dl.entities.stock.Article;
